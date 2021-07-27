@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'img/logo.ico' %}" type="image/ico">
+    <title>{% block title %}{% endblock title %}</title>
+
+    <!-- Bootstrap5 cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+
+    <!-- Font cdn -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- <link rel="stylesheet" href="./css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/media.css' %}">
+</head>
+<body>
+
+<!-- ============ First Banner =========== -->
+{% include 'Tea_App/messages.html' %}
+<section class="first-banner">
+    <div class="container-fluid px-5 py-2 first-banner-body">
+        <div class="row">
+            <div class="col-sm-12 d-flex justify-content-between">
+                <div class="links">
+                    <a href="#" id="facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" id="twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" id="youtube"><i class="fab fa-youtube"></i></a>
+                </div>
+
+                <div class="search d-flex flex-row">
+                    <form method="POST" class="form-inline d-flex flex-row" action="{%  url 'Tea_App:search' %}">
+                        {% csrf_token %}
+                        <input class="form-control mr-sm-2 search_field" type="search" placeholder="Search" aria-label="Search"
+                               name="search" id="search">
+{#                        <button class="btn btn-outline-success my-2 my-sm-0 search_btn" type="submit">Search</button>#}
+                        <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ============ First Banner =========== -->
+
+<section class="main-body container px-5 py-5">
+    <!-- ============ Logo ============== -->
+    <div class="row">
+        <div class="col-sm-12 d-flex justify-content-center header-logo">
+            <a href="#"><img src="{% static 'img/logo.jpg' %}" class="img-fluid"></a>
+        </div>
+    </div>
+    <!-- ============ Logo ============== -->
+
+    <!-- ============ Navbar ========== -->
+    <div class="d-flex justify-content-center">
+        <div class="row nav-borders d-flex align-items-center mt-3 justify-content-center w-100" id="sticky">
+            <div class="col-sm-12 navbar d-flex justify-content-center">
+                <div class="navbar-body">
+                    <nav>
+                        <div class="nav_links d-flex flex-row">
+                            <a href="{% url 'Tea_App:home' %}">HOME</a>
+                            <a href="{% url 'Tea_App:help' %}">TEA HELP</a>
+                            <a href="{% url 'Tea_App:types' %}">TYPES OF TEA</a>
+                            <a href="{% url 'Tea_App:blog' %}">BLOG</a>
+                            <a href="{% url 'Tea_App:about' %}">ABOUT US</a>
+                        </div>
+                    </nav>
+                </div>
+                <div class="toggler" id="toggler_id">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============ Navbar ========== -->
+
+    <!-- ========= Phone navbar ========== -->
+    <div class="d-flex justify-content-center">
+        <div class="phone-navbar d-flex flex-column justify-content-center show" id="phoneNav">
+            <a class="d-flex flex-row justify-content-center" href="{% url 'Tea_App:home' %}">HOME</a>
+            <a class="d-flex flex-row justify-content-center" href="{% url 'Tea_App:help' %}">TEA HELP</a>
+            <a class="d-flex flex-row justify-content-center" href="{% url 'Tea_App:types' %}">TYPES OF TEA</a>
+            <a class="d-flex flex-row justify-content-center" href="{% url 'Tea_App:blog' %}">BLOG</a>
+            <a class="d-flex flex-row justify-content-center" href="{% url 'Tea_App:about' %}">ABOUT US</a>
+        </div>
+    </div>
+    <!-- ========= Phone navbar ========== -->
+
+
+
+    {% block content %} {% endblock content %}
+
+    <!-- =========== Footer Section =========== -->
+    <footer class="container-fluid justify-content-center">
+        <div class="row footer-body d-flex flex-row align-items-center d-flex">
+            <div class="col-sm-4 disclaimer-section text-center d-flex flex-column justify-content-center align-items-center mt-5">
+                <h3>Disclaimer</h3>
+                <p class="mt-2">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi pariatur exercitationem
+                    perspiciatis doloribus, optio consequuntur numquam ex magni ab provident!
+                </p>
+            </div>
+            <div class="col-sm-4 text-center middle-section d-flex flex-column align-items-center mt-5 footer-logo">
+                <img src="{% static 'img/logo.jpg' %}" class="img-fluid">
+                {% comment %} <img src="{{site_utils.site_logo.url}}" class="img-fluid"> {% endcomment %}
+                <p class="mt-3">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi pariatur exercitationem
+                    perspiciatis doloribus, optio consequuntur numquam ex magni ab provident!
+                </p>
+
+                <div class="d-flex flex-row justify-content-center align-items-center footer-social-links">
+                    <a href="#" id="footer-facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" id="footer-twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" id="footer-linkedin"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" id="footer-dribble"><i class="fab fa-dribbble"></i></a>
+                    <a href="#" id="footer-instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="col-sm-4 disclaimer-section text-center d-flex flex-column justify-content-center align-items-center mt-5">
+                <h3>Quick Links</h3>
+                <a href="{% url 'Tea_App:home' %}">Home</a>
+                <a href="{% url 'Tea_App:help' %}">Tea Helps</a>
+                <a href="{% url 'Tea_App:types' %}">Types of Tea</a>
+                <a href="{% url 'Tea_App:blog' %}">Blogs</a>
+            </div>
+        </div>
+
+    </footer>
+
+
+    <script src="{% static 'js/script.js' %}"></script>
+    <!-- <script src="./js/popper.js"></script> -->
+    <!-- <script src="./js/bootstrap.js"></script> -->
+    <!-- <script src="./js/jquery.js"></script> -->
+    <script src="{% static 'js/all.min.js' %}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossorigin="anonymous"></script>
+</body>
+</html>

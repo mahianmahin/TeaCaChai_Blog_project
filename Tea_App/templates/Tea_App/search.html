@@ -1,0 +1,37 @@
+{% extends 'Tea_App/base.html' %}
+{% load static %}
+
+{% block title %} Search Result{% endblock title %}
+
+{% block content %}
+
+    {% if types_teas %}
+        <h3 class="my-5">Search results</h3>
+
+        <div class="col-sm-12">
+            <div class="d-flex flex-column my-5">
+                {% for item in types_teas %}
+{#                    <a href="{% url "Tea_App:blog_details" item.id %}"><p>{{ item.title }}</p></a>#}
+                    <div class="search_items">
+                        <a href="{% url "Tea_App:blog_details" item.id %}">
+                            <div class="recent-post-body d-flex flex-row">
+                                <img src="{{item.thumbnail_img.url}}">
+                                <div class="d-flex flex-column justify-content-end">
+                                    <span>Blog / {{item.published_date}}</span>
+                                    <h6>{{item.title}}</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+
+    {% else %}
+        <h2>Searched data not found!</h2>
+    {% endif %}
+
+
+{% endblock content %}

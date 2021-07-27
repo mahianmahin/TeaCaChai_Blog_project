@@ -1,0 +1,94 @@
+{% extends 'Tea_App/base.html' %}
+{% load static %}
+
+{% block title %} Tea Details {% endblock title %}
+
+{% block content %}
+
+        <div class="row mt-5">
+            <div class="col-md-6 mb-3">
+                <h3 class="my-3">{{tea_type.type_name}}</h3>
+                <img src="{{tea_type.tea_picture.url}}" class="img-fluid my-5">
+            </div>
+
+            <div class="col-sm-12">
+
+                {{tea_type.tea_description | safe }}
+                {% comment %} <p>Lorem ipsum dolor sit, amet consectetur
+                     adipisicing elit. Voluptate, ipsa mai
+                     ores repellendus aut tenetur fuga quo
+                     d exercitationem quidem recusandae do
+                     lorem eaque at excepturi quaerat et r
+                     epellat rerum impedit! Dicta, nostrum
+                !</p>
+
+                <p>Lorem ipsum dolor sit amet consectetur 
+                    adipisicing elit. Amet, quaerat, atque
+                     consequatur delectus quis laboriosam 
+                     unde corrupti vel, aut consequuntur d
+                     icta dolore voluptatibus perspiciatis?
+                      Pariatur consequuntur in eaque. Nam q
+                      uasi animi porro minus maxime. Et at 
+                      hic sequi culpa error voluptates fuga
+                       fugiat consequuntur. Ducimus est cul
+                       pa eum qui sed laboriosam soluta! Qu
+                       idem, soluta nulla nemo odit amet dol
+                       or quod quasi incidunt accusantium de
+                       bitis, architecto pariatur est offici
+                       a vero dicta aliquid at cumque vel ut
+                        excepturi corporis quam? Unde, magnam.
+                       pa eum qui sed laboriosam soluta! Qu
+                       idem, soluta nulla nemo odit amet dol
+                       or quod quasi incidunt accusantium de
+                       bitis, architecto pariatur est offici
+                       a vero dicta aliquid at cumque vel ut
+                        excepturi corporis quam? Unde, magnam.
+                </p>
+            </div>
+
+            <div class="col-sm-12">
+                <h3>The way we prepare it</h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur,
+                     adipisicing elit. Deserunt incidunt pe
+                     rferendis dolores enim, officia exerci
+                     tationem illo explicabo animi sunt doloremque
+                      inventore nobis corporis vitae, sequi harum
+                       recusandae sapiente ipsum? Labore.
+                     tationem illo explicabo animi sunt doloremque
+                      inventore nobis corporis vitae, sequi harum
+                       recusandae sapiente ipsum? Labore.
+                     tationem illo explicabo animi sunt doloremque
+                      inventore nobis corporis vitae, sequi harum
+                       recusandae sapiente ipsum? Labore.
+                </p>
+
+                <h4>Ingredients</h4>
+                <ul>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, quis.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, s.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dictasrgsrgrg, s.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Di, s.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing . Di, s.</li>
+                </ul>
+
+                <h3>Benefits of Black tea</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, atque!</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim dolores perfe
+                    rendis rem libero quae aut asperiores perspiciatis consequuntur recusandae
+                     iure, repellat eveniet sapiente eligendi minima. Est obcaecati veritatis 
+                     beatae commodi esse omnis saepe iste exercitationem ab. Iure nisi iste pe
+                     rspiciatis, eligendi praesentium fugit tempore consequatur atque delectus
+                      consectetur voluptatum est vel aliquam sit maiores dolore ipsum voluptas
+                       ducimus, quam illo? Nihil inventore aspernatur quasi. Pariatur id, recu
+                       sandae quo itaque voluptatem qui consequatur repellat laboriosam nisi r
+                       em quidem iure quae ipsum tempora neque vel voluptatum impedit deleniti,
+                        dignissimos aperiam hic inventore optio eveniet odio. Doloribus tempori
+                bus quae quos praesentium non voluptatum.</p>
+            </div> {% endcomment %}
+
+        </div>
+
+    </section>
+
+{% endblock content %}

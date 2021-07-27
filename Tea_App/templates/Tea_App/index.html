@@ -1,0 +1,153 @@
+{% extends 'Tea_App/base.html' %}
+{% load static %}
+
+{% block title %} Home Page {% endblock title %}
+
+{% block content %}
+        <!-- =========== Image slide show =========== -->
+        <div id="carouselExampleControls" class="carousel slide mt-5" data-bs-ride="carousel">
+            <div class="carousel-inner">
+            {% for img in img_slider %}
+                {% if img.active %}
+                <div class="carousel-item active">
+                    <img src="{{img.slider_img.url}}" class="d-block w-100">
+                </div>
+                {% else %}
+                <div class="carousel-item">
+                    <img src="{{img.slider_img.url}}" class="d-block w-100">
+                </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <!-- =========== Image slide show =========== -->
+
+        <div class="d-flex flex-row flex-wrap">
+            <div class="col-sm-9">
+
+                <!-- ======== Featured heading ========= -->
+                <div class="featured-section mt-5 d-flex justify-content-center">
+                    <div class="featured-heading mt-5 text-center">
+                        {% for item in site_utils %}
+                            {{item.home_first_section_heading | safe }}
+                        {% endfor %}
+                        {% comment %} <b>Featured Listings</b><br>
+                        <b><span>Find Your Perfect Tea</span></b> {% endcomment %}
+                    </div>
+                </div>
+                <!-- ======== / Featured heading ========= -->
+
+                <!-- ======== Featured items ========== -->
+                <div class="featured-items d-flex flex-row flex-wrap text-center justify-content-center">
+                {% for item in types %}
+                    {% if item.first_section %}
+                        <div>
+                            <a href="{% url 'Tea_App:tea_details' item.id %}"><img src="{{item.tea_picture.url}}" class="img-fluid"></a><br>
+                            <b>{{item.type_name}}</b>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                    {% comment %} <div>
+                        <a href="#"><img src="{% static 'img/white-tea.jpg' %}" class="img-fluid"></a><br>
+                        <b>White Tea</b>
+                    </div>
+                    <div>
+                        <a href="#"><img src="{% static 'img/green-tea.jpg' %}" class="img-fluid"></a><br>
+                        <b>Green Tea</b>
+                    </div>
+                    <div>
+                        <a href="#"><img src="{% static 'img/oolong-tea.jpg' %}" class="img-fluid"></a><br>
+                        <b>Oolong Tea</b>
+                    </div>
+                    <div>
+                        <a href="#"><img src="{% static 'img/rooibos-tea.jpg' %}" class="img-fluid"></a><br>
+                        <b>Rooibos Tea</b>
+                    </div>
+                    <div>
+                        <a href="#"><img src="{% static 'img/fermented-tea.jpg' %}" class="img-fluid"></a><br>
+                        <b>Fermented Tea</b>
+                    </div>
+                    <div>
+                        <a href="#"><img src="{% static 'img/herbal-tea.jpg' %}" class="img-fluid"></a><br>
+                        <b>Herbal Tea</b>
+                    </div>
+                    <div>
+                        <a href="#"><img src="{% static 'img/matcha-tea.jpg' %}" class="img-fluid"></a><br>
+                        <b>Matcha Tea</b>
+                    </div> {% endcomment %}
+                </div>
+                <!-- ======== Featured items ========== -->
+            </div>
+
+                <div class="col-sm-3 about-me-section d-flex flex-column align-items-center">
+                    <div class="about-me-card">
+                    {% for item in about_me %}
+                        <h3>About Me</h3>
+                        <img src="{{item.about_me_avatar.url}}">
+                        <p>{{item.about_me_description | safe}}</p>
+                    {% endfor %}
+                    </div>
+
+                    <div class="subscription-card mt-3">
+                        <h3>Subscribe to The Newsletter</h3>
+                        <form class="form-group mt-4" method="POST">
+                        {% csrf_token %}
+                            <label>EMAIL ADDRESS</label>
+                            <input type="text" name="subs_mail" class="form-control mt-2" required>
+
+                            <label class="mt-4">FIRST NAME</label>
+                            <input type="text" name="subs_first_name" class="form-control mt-2" required>
+
+                            <input type="submit" value="SUBSCRIBE" class="btn btn-dark mt-3">
+                        </form>
+                    </div>
+
+{#                    <div class="inner-search mt-5">#}
+{#                        <form class="form-group d-flex flex-row">#}
+{#                            <input type="text" placeholder="Search" class="form-control">#}
+{#                            <input type="submit" value="Search" class="btn btn-dark">#}
+{#                        </form>#}
+{#                    </div>#}
+                </div>
+        </div>
+
+        <div class="col-sm-12 knowledge-section mt-5 text-center">
+            <div class="featured-section mt-5 ">
+                <div class="featured-heading mt-5 text-center knowledge-heading">
+                    {% for item in site_utils %}
+                        {{item.home_second_section_heading | safe }}
+                    {% endfor %}
+                    {% comment %} <b><span>Tea Knowledge</span></b> {% endcomment %}
+                </div>
+                <div class="featured-items d-flex flex-row flex-wrap text-center justify-content-center">
+                {% for item in types %}
+                    {% if item.second_section %}
+                        <div>
+                            <a href="{% url 'Tea_App:tea_details' item.id %}"><img src="{{item.tea_picture.url}}" class="img-fluid"></a><br>
+                            <b>{{item.type_name}}</b>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                    {% comment %} <div>
+                        <a href="#"><img src="{% static 'img/white-tea.jpg' %}" class="img-fluid"></a><br>
+                        <b>White Tea</b>
+                    </div>
+                    <div>
+                        <a href="#"><img src="{% static 'img/green-tea.jpg' %}" class="img-fluid"></a><br>
+                        <b>Green Tea</b>
+                    </div> {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

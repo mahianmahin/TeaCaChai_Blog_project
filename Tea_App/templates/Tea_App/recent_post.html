@@ -1,0 +1,28 @@
+{% load static %}
+<!-- ================ Recent post section ================ -->
+
+            <div class="col-sm-3 recent-posts d-flex flex-column">
+                <div class="recent-header text-center">
+                    Recent Posts
+                </div>
+                {% if recent_blogs %}
+                    {% for blog_item in recent_blogs %}
+                        <!-- --------- Recent post body ---------- -->
+                        <a href="./blog-details.html"><div class="recent-post-body d-flex flex-row">
+                            <img src="{{blog_item.thumbnail_img.url}}">
+                            <div class="d-flex flex-column justify-content-end">
+                            <span>Blog / {{blog_item.published_date}}</span>
+                            <h6>{{blog_item.title}}</h6>
+                            </div>
+                        </div></a>
+                    {% endfor %}
+
+                {% else %}
+
+                <h4>No Posts Available</h4>
+
+                {% endif %}
+                
+            </div>
+            <!-- ================ Recent post section ================ -->
+        </div>

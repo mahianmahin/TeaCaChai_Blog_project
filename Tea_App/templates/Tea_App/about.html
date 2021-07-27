@@ -1,0 +1,19 @@
+{% extends 'Tea_App/base.html' %}
+{% load static %}
+
+{% block title %} About Page {% endblock title %}
+
+{% block content %}
+
+        <div class="about-body text-center mt-5">
+        {% for item in site_utils %}
+            <img src="{{item.about_us_avatar.url}}" class="img-fluid">
+            <div class="about-details mt-5">
+                {{item.about_us_description | safe }}
+            </div>
+        {% endfor %}
+        </div>
+
+    </section>
+
+{% endblock content %}

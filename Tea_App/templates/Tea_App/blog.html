@@ -1,0 +1,71 @@
+{% extends 'Tea_App/base.html' %}
+{% load static %}
+
+{% block title %} Blog {% endblock title %}
+
+{% block content %}
+
+        <!-- ========= Blog ============ -->
+
+        <div class="row mt-3">
+            <div class="col-sm-9 d-flex flex-row flex-wrap justify-content-between blog-list-section">
+            {% if blog %}
+                {% for blog_item in blog %}
+                    <!-- --------- Blog part --------- -->
+                    <a href="{% url 'Tea_App:blog_details' blog_item.id %}"><div class="blog-card text-center">
+                        <div class="card-img">
+                            <img src="{{blog_item.thumbnail_img.url}}" class="img-fluid shadow">
+                        </div>
+                        <div class="card-name mt-3">
+                            <span>Blog / {{blog_item.published_date}}</span>
+                            <h3 class="mt-3">{{blog_item.title}}</h3>
+                        </div>
+                    </div></a>
+                    <!-- --------- Blog part --------- -->
+                {% endfor %}
+
+            {% else %}
+
+                <h3>No blogs yet to show!</h3>
+
+            {% endif %}
+
+
+                <!-------------- Pagination section ---------------- -->
+
+                {% if blog.has_other_pages %}
+
+                <div class="d-flex flex-row justify-content-center align-items-center pagination">
+
+                {% if blog.has_previous %}
+                    <a href="?page={{blog.previous_page_number}}" class="d-flex justify-content-center align-items-center"><i class="fas fa-angle-left"></i></a>
+                {% else %}
+                    <a class="d-flex justify-content-center align-items-center disabled"><i class="fas fa-angle-left"></i></a>
+                {% endif %}
+
+                {% for i in blog.paginator.page_range %}
+                    <a href="?page={{i}}" class="d-flex justify-content-center align-items-center">{{i}}</i></a>
+                {% endfor %}
+
+                {% if blog.has_next %}
+                    <a href="?page={{blog.next_page_number}}" class="d-flex justify-content-center align-items-center"><i class="fas fa-angle-right"></i></a>
+                {% else %}
+                    <a class="d-flex justify-content-center align-items-center disabled"><i class="fas fa-angle-right"></i></a>
+                {% endif %}
+                </div>
+
+                {% endif %}
+
+
+                <!-------------- Pagination section ---------------- -->
+
+            </div>
+
+            <!-- ================ Recent post section ================ -->
+            {% include 'Tea_App/recent_post.html' %}
+            <!-- ================ Recent post section ================ -->
+        </div>
+
+    </section>
+
+{% endblock content %}
